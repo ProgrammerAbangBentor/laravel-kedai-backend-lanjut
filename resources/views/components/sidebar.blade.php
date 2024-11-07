@@ -20,12 +20,14 @@
                 </a>
             </li>
 
+            @role('admin')
             <li class="{{ Request::is('credits') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('user.index')}}"><i class="fa-sharp-duotone fa-solid fa-users"></i>
                     </i> <b><span>Users</span></b>
                 </a>
             </li>
+            @endrole
             <li class="{{ Request::is('credits') ? 'active' : '' }}">
                 <a class="nav-link"
                     href="{{ route('product.index')}}"><i class="fa-sharp-duotone fa-solid fa-store"></i>
