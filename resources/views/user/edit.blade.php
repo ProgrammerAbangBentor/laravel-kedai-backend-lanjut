@@ -73,16 +73,16 @@
                                 <label class="form-label">Roles</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="roles" value="ADMIN" {{ $user->role == 'admin' ? 'selected' : '' }} class="selectgroup-input"
+                                        <input type="radio" name="role" value="admin" {{ $user->role == 'admin' ? 'selected' : '' }} class="selectgroup-input"
                                             checked="" >
                                         <span class="selectgroup-button">Admin</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="roles" value="STAFF" {{ $user->role == 'dosen' ? 'selected' : '' }} class="selectgroup-input">
+                                        <input type="radio" name="role" value="staff" {{ $user->role == 'dosen' ? 'selected' : '' }} class="selectgroup-input">
                                         <span class="selectgroup-button">Staff</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="roles" value="USER" {{ $user->role == 'mahasiswa' ? 'selected' : '' }} class="selectgroup-input">
+                                        <input type="radio" name="role" value="user" {{ $user->role == 'mahasiswa' ? 'selected' : '' }} class="selectgroup-input">
                                         <span class="selectgroup-button">User</span>
                                     </label>
 

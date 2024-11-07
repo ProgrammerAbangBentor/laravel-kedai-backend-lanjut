@@ -71,7 +71,7 @@
                                                     {{ $user->phone }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->roles }}
+                                                    {{ $user->role }}
                                                 </td>
 
                                                 <td>{{ $user->created_at }}</td>

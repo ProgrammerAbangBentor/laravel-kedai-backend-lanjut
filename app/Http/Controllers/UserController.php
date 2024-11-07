@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //get users with pagination
-        $users = DB::table('users')
+        $users = User::with('roles')  // Pastikan relasi roles dimuat
         ->when($request->input('name'), function ($query, $name) {
             return $query->where('name', 'like', '%' . $name . '%');
         })
@@ -37,15 +37,18 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
             'phone'=> 'required',
-            'roles' => 'required',
+            'role' => 'required|in:admin,user,staff',
         ]);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
-            'roles' => $request->roles,
+            'role' => $request->roles,
         ]);
+
+        $user->assignRole($request->role);
+
         return redirect()->route('user.index')->with('success', 'User created successfully.');
 
     }
@@ -78,6 +81,7 @@ class UserController extends Controller
             $data['password'] = $user->password;
         }
         $user->update($data);
+        $user->assignRole($request->role);
         return redirect()->route('user.index') ->with('success', 'User updated successfully');
 
     }
@@ -89,10 +93,4 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('success', 'User deleted successfully');
     }
 
-    //  public function destroy($id)
-    //  {
-    //      $user = User::findOrFail($id);
-    //      $user->delete();
-    //      return redirect()->route('user.index')->with('success', 'User deleted successfully');
-    //  }
 }

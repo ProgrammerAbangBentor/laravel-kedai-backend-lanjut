@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->after('email')->nullable();
-            $table->enum('role',['admin','staff','user'])->default('user')->after('phone')->nullable();
-
+        Schema::table('model_has_roles', function (Blueprint $table) {
+            $table->string('model_type')->default('App\Models\User')->change();
         });
     }
 
@@ -23,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['phone', 'role']);
+        Schema::table('model_has_roles', function (Blueprint $table) {
+            $table->string('model_type')->default(null)->change();
         });
     }
 };
